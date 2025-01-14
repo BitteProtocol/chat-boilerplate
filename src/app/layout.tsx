@@ -2,7 +2,7 @@ import WalletProvider from "@/providers/WalletProvider";
 import "@near-wallet-selector/modal-ui/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "@bitte-ai/chat/style.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
