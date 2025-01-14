@@ -1,8 +1,8 @@
 "use client";
 
 import { NearWalletConnector } from "@/components/NearWalletConnector";
+import { BitteAiChat } from "@bitte-ai/chat";
 import { useBitteWallet, Wallet } from "@mintbase-js/react";
-import { BitteAiChat } from "bitte-ai-chat";
 import { useEffect, useState } from "react";
 
 const bitteAgent = {
@@ -34,13 +34,7 @@ const Main: React.FC = () => {
         agentid={bitteAgent.id}
         wallet={{ near: { wallet } }}
         apiUrl="/api/chat"
-        colors={{
-          generalBackground: "#000000",
-          messageBackground: "#18181A",
-          textColor: "#FFFFFF",
-          buttonColor: "#0F172A",
-          borderColor: "#ffffff",
-        }}
+        theme="light"
       />
     </main>
   );

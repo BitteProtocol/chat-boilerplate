@@ -11,7 +11,7 @@
   "dependencies": {
     "@mintbase-js/react": "^0.6.5",
     "@near-wallet-selector/modal-ui": "^8.9.15",
-    "bitte-ai-chat": "^0.0.1-beta-17",
+    "@bitte-ai/chat": "0.0.1-beta-28",
     "next": "15.1.4",
     "react": "^19",
     "react-dom": "^19"
