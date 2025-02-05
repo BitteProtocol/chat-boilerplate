@@ -35,6 +35,7 @@ const Main: React.FC = () => {
           agentId={bitteAgent.id}
           wallet={{ near: { wallet } }}
           apiUrl="/api/chat"
+          historyApiUrl="/api/history"
           colors={{
             generalBackground: "#18181A",
             messageBackground: "#0A0A0A",
