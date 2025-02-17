@@ -16,6 +16,9 @@ const bitteAgent = {
 };
 
 const Main: React.FC = () => {
+
+
+
   const { selector } = useBitteWallet();
   const [wallet, setWallet] = useState<Wallet>();
 
@@ -24,13 +27,14 @@ const Main: React.FC = () => {
       const walletInstance = await selector.wallet();
       setWallet(walletInstance);
     };
+
     if (selector) fetchWallet();
   }, [selector]);
 
   return (
     <main className="flex flex-col items-center gap-8 max-w-5xl mx-auto my-4 md:my-8">
       <div className="h-[calc(100vh-114px)] lg:h-[calc(100vh-180px)] w-full">
-        <BitteAiChat
+     <BitteAiChat
           options={{ agentImage: bitteAgent.image, agentName: bitteAgent.name }}
           agentId={bitteAgent.id}
           wallet={{ near: { wallet } }}
