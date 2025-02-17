@@ -9,26 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@bitte-ai/chat": "0.0.19",
+    "@bitte-ai/chat": "0.1.0-update-packages-2-b2b944a",
     "@bitte-ai/react": "0.6.6-beta-prerelease.40",
-    "@near-wallet-selector/modal-ui": "latest",
-    "@radix-ui/react-dropdown-menu": "latest",
-    "clsx": "latest",
-    "lucide-react": "latest",
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest",
+    "@near-wallet-selector/modal-ui": "8.10.0",
+    "@radix-ui/react-dropdown-menu": "2.1.6",
+    "clsx": "2.1.1",
+    "lucide-react": "^0.462.0",
+    "next": "^15.1.6",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "latest",
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "eslint": "latest",
-    "eslint-config-next": "latest",
+    "@types/node": "^22.13.4",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "eslint": "9.20.1",
+    "eslint-config-next": "15.1.7",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "latest"
+    "typescript": "^5.7.3"
   }
 }
