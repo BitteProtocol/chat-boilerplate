@@ -4,7 +4,6 @@ import { BitteAiChat } from "@bitte-ai/chat";
 import "@bitte-ai/chat/style.css";
 import { useBitteWallet, Wallet } from "@bitte-ai/react";
 import { useEffect, useState } from "react";
-import WelcomeMessage from "./WelcomeMessage";
 
 const bitteAgent = {
   id: "bitte-assistant",
@@ -31,18 +30,14 @@ const Main: React.FC = () => {
     <main className="flex flex-col items-center gap-8 max-w-5xl mx-auto my-4 md:my-8">
       <div className="h-[calc(100vh-114px)] lg:h-[calc(100vh-180px)] w-full">
         <BitteAiChat
-          options={{ agentImage: bitteAgent.image, agentName: bitteAgent.name }}
+          options={{
+            agentImage: bitteAgent.image,
+            agentName: bitteAgent.name,
+          }}
           agentId={bitteAgent.id}
           wallet={{ near: { wallet } }}
           apiUrl="/api/chat"
-          colors={{
-            generalBackground: "#18181A",
-            messageBackground: "#0A0A0A",
-            textColor: "#FAFAFA",
-            buttonColor: "#000000",
-            borderColor: "#334155",
-          }}
-          welcomeMessageComponent={<WelcomeMessage />}
+          historyApiUrl="/api/history"
         />
       </div>
     </main>

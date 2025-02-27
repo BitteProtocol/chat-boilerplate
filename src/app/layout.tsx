@@ -17,10 +17,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <WalletProvider>
-      <html lang="en">
-        <body className={`${inter.className} antialiased`}>{children}</body>
-      </html>
-    </WalletProvider>
+    <html lang="en">
+      <body className={`${inter.className} antialiased`}>
+        <WalletProvider>{children}</WalletProvider>
+      </body>
+    </html>
   );
 }

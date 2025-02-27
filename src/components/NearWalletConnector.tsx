@@ -15,7 +15,22 @@ import {
 const NearWalletConnector: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { isConnected, selector, connect, activeAccountId } = useBitteWallet();
+  const {
+    isConnected,
+    selector,
+    connect,
+    activeAccountId,
+    isWaitingForConnection,
+    isWalletSelectorSetup,
+  } = useBitteWallet();
+
+  const isLoading = isWaitingForConnection || !isWalletSelectorSetup;
+
+  const isDisconnected =
+    isWalletSelectorSetup &&
+    !isConnected &&
+    !isWaitingForConnection &&
+    !activeAccountId;
 
   const handleSignOut = async () => {
     const wallet = await selector.wallet();
@@ -40,7 +55,13 @@ const NearWalletConnector: React.FC = () => {
     </button>
   );
 
-  if (!isConnected) {
+  if (isLoading) {
+    return (
+      <div className="hidden md:block bg-[#27272A] h-[40px] w-[160px] rounded-md animate-pulse" />
+    );
+  }
+
+  if (isDisconnected) {
     return (
       <div className="fixed bottom-0 md:relative bg-black p-8 z-30 w-full left-0 md:p-0 md:w-auto md:bg-transparent">
         <button
