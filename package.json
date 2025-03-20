@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@bitte-ai/chat": "^0.1.5",
-    "@bitte-ai/react": "0.6.6-beta-prerelease.40",
+    "@bitte-ai/react": "0.7.0",
     "@near-wallet-selector/modal-ui": "^8.10.0",
     "@radix-ui/react-dropdown-menu": "^2.1.6",
     "clsx": "^2.1.1",
