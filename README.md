@@ -1,118 +1,168 @@
-# chat-boilerplate
+# Bitte AI Chat Boilerplate
 
-## Read the tutorial:
-https://docs.bitte.ai/agents/embeddable-chat-component
+## Overview
+
+This boilerplate provides a quick start for integrating the Bitte AI Chat component into your web application. It offers a pre-configured setup for implementing an AI chat interface with customizable options.
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- **Node.js** (v18.0.0 or later)
+- **pnpm** (Node Package Manager)
+- **A Bitte API Key**
 
 ## Getting Started
 
-This guide will help you set up the project and configure the necessary components to get started.
+### 1. Obtain an API Key
 
-### Prerequisites
+1. Visit [https://key.bitte.ai/](https://key.bitte.ai/)
+2. Create an account or log in
+3. Generate a new API key
+4. Keep the API key secure and do not share it publicly
 
-Ensure you have the following installed on your machine:
-- Node.js
-- pnpm (Node Package Manager)
-- Bitte API Key
+### 2. Clone the Repository
 
-### GET AN API KEY
+```bash
+git clone https://github.com/BitteProtocol/chat-boilerplate.git
+cd chat-boilerplate
+```
 
-https://key.bitte.ai/
+### 3. Install Dependencies
 
+```bash
+pnpm install
+```
 
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/BitteProtocol/chat-boilerplate.git
-   cd chat-boilerplate
-   ```
-
-2. Install the dependencies:
-   ```bash
-   pnpm install
-   ```
+## Configuration
 
 ### Environment Variables
 
-Create a `.env` file in the root directory of your project and add the necessary environment keys. Here is an example of what your `.env` file might look like:
+Create a `.env` file in the project root with the following configuration:
 
 ```plaintext
+# Bitte API Key
 BITTE_API_KEY=your_api_key_here
+
+# Optional: Additional configuration parameters
+NEXT_PUBLIC_AGENT_ID=your-agent-id.vercel.app
+NEXT_PUBLIC_AGENT_NAME=Your Agent Name
 ```
-### Configuring `Main.tsx`
 
-The `Main.tsx` component is already set up to use the Bitte AI chat functionality. Ensure that your environment variables are correctly set, as they might be used in the component or other parts of your application.
+### Main Component Configuration (`Main.tsx`)
 
-Here is a brief overview of the `Main.tsx` component:
+The `Main.tsx` component is the core of the chat integration. Here's a breakdown of its key components:
+
+#### Agent Configuration
 
 ```typescript
-"use client";
-
-import { BitteAiChat } from "@bitte-ai/chat";
-import "@bitte-ai/chat/style.css";
-import { useBitteWallet, Wallet } from "@bitte-ai/react";
-import { useEffect, useState } from "react";
-import WelcomeMessage from "./WelcomeMessage";
-
 const bitteAgent = {
-  id: "your-agent-id.vercel.app",
-  name: "Your Agent Name",
-  description:
-    "Agent Description",
-  image: "/icon.svg",
+  id: "your-agent-id.vercel.app",      // Unique agent identifier
+  name: "Your Agent Name",              // Display name for the agent
+  description: "Agent Description",     // Brief description of the agent's purpose
+  image: "/icon.svg",                   // Path to agent's profile image
 };
-
-const Main: React.FC = () => {
-  const { selector } = useBitteWallet();
-  const [wallet, setWallet] = useState<Wallet>();
-
-  useEffect(() => {
-    const fetchWallet = async () => {
-      const walletInstance = await selector.wallet();
-      setWallet(walletInstance);
-    };
-    if (selector) fetchWallet();
-  }, [selector]);
-
-  return (
-    <main className="flex flex-col items-center gap-8 max-w-5xl mx-auto my-4 md:my-8">
-      <div className="h-[calc(100vh-114px)] lg:h-[calc(100vh-180px)] w-full">
-        <BitteAiChat
-          options={{ agentImage: bitteAgent.image, agentName: bitteAgent.name }}
-          agentId={bitteAgent.id}
-          wallet={{ near: { wallet } }}
-          apiUrl={"/api/chat"}
-          colors={{
-            generalBackground: "#18181A",
-            messageBackground: "#0A0A0A",
-            textColor: "#FAFAFA",
-            buttonColor: "#000000",
-            borderColor: "#334155",
-          }}
-          welcomeMessageComponent={<WelcomeMessage />}
-        />
-      </div>
-    </main>
-  );
-};
-
-export default Main;
 ```
+
+#### Chat Component Properties
+
+The `BitteAiChat` component accepts several important props:
+
+- `options`: Customize agent display
+- `agentId`: Unique identifier for the agent
+- `wallet`: Wallet configuration (for blockchain interactions)
+- `apiUrl`: Endpoint for chat API
+- `colors`: Custom color scheme
+- `welcomeMessageComponent`: Custom welcome message
+
+#### Wallet Integration
+
+The component uses `useBitteWallet` hook to manage wallet connections, supporting blockchain-based interactions.
+
+### Customization
+
+#### Styling
+
+Customize the chat interface by modifying the `colors` prop:
+
+```typescript
+colors={{
+  generalBackground: "#18181A",     // Background color
+  messageBackground: "#0A0A0A",     // Message area background
+  textColor: "#FAFAFA",              // Primary text color
+  buttonColor: "#000000",            // Button and interactive element color
+  borderColor: "#334155",            // Border and separator color
+}}
+```
+
+#### Welcome Message
+
+Create a custom `WelcomeMessage` component to personalize the initial chat experience:
+
+```typescript
+const WelcomeMessage: React.FC = () => (
+  <div>
+    <h2>Welcome to Our AI Assistant!</h2>
+    <p>How can I help you today?</p>
+  </div>
+);
+```
+
+## Development
 
 ### Running the Project
 
-To start the project, run the following command:
+Start the development server:
 
 ```bash
 pnpm run dev
 ```
 
-This will start the development server and open the project in your default web browser.
+The application will launch in development mode, typically at `http://localhost:3000`.
 
-### Additional Configuration
+### Build for Production
 
-- If you need to configure additional settings, refer to the documentation or comments within the codebase.
+To create a production build:
+
+```bash
+pnpm run build
+```
+
+### Deployment Considerations
+
+- Ensure all environment variables are correctly set in your production environment
+- Configure CORS and security settings as needed
+- Consider server-side rendering (SSR) requirements
+
+## Troubleshooting
+
+### Common Issues
+
+1. **API Key Errors**
+   - Verify your Bitte API key is correct
+   - Check network connectivity
+   - Ensure key permissions are properly set
+
+2. **Wallet Connection Problems**
+   - Confirm blockchain network settings
+   - Check wallet provider compatibility
 
 ## Contributing
 
-If you wish to contribute to this project, please fork the repository and submit a pull request.
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+[Insert License Information]
+
+## Support
+
+For additional support, please visit:
+- Bitte AI Documentation: [https://docs.bitte.ai/agents/embeddable-chat-component](https://docs.bitte.ai/agents/embeddable-chat-component)
+- GitHub Issues: [Repository Issues Page]
