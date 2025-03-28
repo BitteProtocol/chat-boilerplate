@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import NearWalletConnector from "./NearWalletConnector";
+import { EvmConnectButton } from "@/components/EvmConnectButton";
 
 const Header: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const Header: React.FC = () => {
         className="md:hidden"
       />
       <div className="flex gap-4 items-center">
+        <EvmConnectButton />
         <NearWalletConnector />
         <a
           href="mailto:paul@bitte.ai"
