@@ -1,7 +1,6 @@
 "use client";
 
 import { BitteAiChat } from "@bitte-ai/chat";
-import "@bitte-ai/chat/style.css";
 import { useBitteWallet, Wallet } from "@bitte-ai/react";
 import { useEffect, useState } from "react";
 
